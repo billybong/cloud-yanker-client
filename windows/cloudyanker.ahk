@@ -26,13 +26,11 @@ return
 
 getSnippet(url){
   HTTPRequest(url, data, "", "")
-  MsgBox % data
   return data
 }
 
 postSnippet(url){
 	data := getFromClipboard()
-	MsgBox % data
 
 	Headers=
 	(
