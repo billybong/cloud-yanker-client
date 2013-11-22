@@ -16,7 +16,9 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 URL = %LOCATION%%USER%
 
 ^!p:: ;Performs a GET
-sendRaw % getSnippet(URL)
+data := getSnippet(URL)
+clipboard = %data%
+send, ^v
 return
 
 ^!y:: ;Performs a POST
