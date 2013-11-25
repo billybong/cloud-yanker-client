@@ -1,7 +1,8 @@
-IniRead, LOCATION, config.ini, SETTINGS, LOCATION, ""
+﻿IniRead, LOCATION, config.ini, SETTINGS, LOCATION, ""
 IniRead, USER, config.ini, SETTINGS, USER, ""
+URL = %LOCATION%%USER%
 
-MsgBox, Welcome %USER%. CTRL+ALT+Y to copy, CTRL+ALT+P to paste. Will use %LOCATION%%USER% as backend.
+MsgBox, Welcome %USER%. CTRL+ALT+Y to copy, CTRL+ALT+P to paste. Will use %URL% as backend.
 
 /*
 ###############################################################################################################
@@ -14,9 +15,6 @@ Hotkeys can be switched, see AutoHotkey for instructions. Default is CTRL+ALT+Y 
 
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
-
-URL = %LOCATION%%USER%
-
 
 #Include httprequest.ahk
 
@@ -32,8 +30,8 @@ return
 
 
 getSnippet(url){
-  HTTPRequest(url, data, "", "")
-  return data
+    HTTPRequest(url, data, "", "")
+    return data
 }
 
 postSnippet(url){
@@ -41,11 +39,11 @@ postSnippet(url){
 
 	Headers=
 	(
-	Content-Type: text/plain; charset=utf-8
+	 Content-Type: text/plain; charset=utf-8
 	)
 
-  HTTPRequest(url, data, Headers, "")
-  return
+    HTTPRequest(url, data, Headers, "`nCODEPAGE")
+	return
 }
 
 getFromClipboard(){
